@@ -2,8 +2,8 @@ from django.shortcuts import render
 from .models import FeaturedMenu
 
 def index(request):
-  featured_menus = FeaturedMenu.objects.all()  # Get all featured menus
-  context = {'featured_menus': featured_menus}
+  menu_items = MenuItem.objects.filter(is_special=True)
+  context = {'menu_items': menu_items}
   return render(request, 'index.html', context)
 
 from .models import MenuItem
@@ -25,7 +25,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 def menu(request):
-    categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Wine"]
+    categories = ["Breakfast", "Lunch", "Dinner","Drinks", "Dessert", "Wine"]
     menu_data = []
     
     for category in categories:

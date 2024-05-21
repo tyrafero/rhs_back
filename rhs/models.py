@@ -30,6 +30,8 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=5, decimal_places=2)
     image = models.ImageField(upload_to='menu_images/')
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    is_special = models.BooleanField(default=False)
+    is_special_front = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
