@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from rhs.views import index,about, contact,menu, blog, blog_single, reservation
+from rhs.views import index,about, contact,menu, blog, blog_single, reservation, menu_list, special_menu_list
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
@@ -15,6 +15,7 @@ urlpatterns = [
     path('blog/', blog, name='blog'),
     path('blog-single/', blog_single, name='blog-single'),
     path('reservation/', reservation, name='reservation'),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
