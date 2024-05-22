@@ -17,76 +17,77 @@
       </div>
     </section>
 		
-		<section class="ftco-section ftco-no-pt ftco-no-pb">
-			<div class="container-fluid px-0">
-				<div class="row d-flex no-gutters">
-          <div class="col-md-6 order-md-last ftco-animate makereservation p-4 p-md-5 pt-5">
-          	<div class="py-md-5">
-	          	<div class="heading-section ftco-animate mb-5">
-		          	<span class="subheading">Book a table</span>
-		            <h2 class="mb-4">Make Reservation</h2>
-		          </div>
-	            <form action="#">
-	              <div class="row">
-	                <div class="col-md-6">
-	                  <div class="form-group">
-	                    <label for="">Name</label>
-	                    <input type="text" class="form-control" placeholder="Your Name">
-	                  </div>
-	                </div>
-	                <div class="col-md-6">
-	                  <div class="form-group">
-	                    <label for="">Email</label>
-	                    <input type="text" class="form-control" placeholder="Your Email">
-	                  </div>
-	                </div>
-	                <div class="col-md-6">
-	                  <div class="form-group">
-	                    <label for="">Phone</label>
-	                    <input type="text" class="form-control" placeholder="Phone">
-	                  </div>
-	                </div>
-	                <div class="col-md-6">
-	                  <div class="form-group">
-	                    <label for="">Phone</label>
-	                    <input type="text" class="form-control" id="book_date" placeholder="Date">
-	                  </div>
-	                </div>
-	                <div class="col-md-6">
-	                  <div class="form-group">
-	                    <label for="">Time</label>
-	                    <input type="text" class="form-control" id="book_time" placeholder="Time">
-	                  </div>
-	                </div>
-	                <div class="col-md-6">
-	                  <div class="form-group">
-	                    <label for="">Person</label>
-	                    <div class="select-wrap one-third">
-	                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-	                      <select name="" id="" class="form-control">
-	                        <option value="">Person</option>
-	                        <option value="">1</option>
-	                        <option value="">2</option>
-	                        <option value="">3</option>
-	                        <option value="">4+</option>
-	                      </select>
-	                    </div>
-	                  </div>
-	                </div>
-	                <div class="col-md-12 mt-3">
-	                  <div class="form-group">
-	                    <input type="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
-	                  </div>
-	                </div>
-	              </div>
-	            </form>
-	          </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch pb-5 pb-md-0">
-						<div id="map"></div>
+	<section class="ftco-section ftco-no-pt ftco-no-pb">
+		<div class="container-fluid px-0">
+		  <div class="row d-flex no-gutters">
+			<div class="col-md-6 order-md-last ftco-animate makereservation p-4 p-md-5 pt-5">
+			  <div class="py-md-5">
+				<div class="heading-section ftco-animate mb-5">
+				  <span class="subheading">Book a table</span>
+				  <h2 class="mb-4">Make Reservation</h2>
+				</div>
+				<form action="{% url 'reservation' %}" method="post">
+				  {% csrf_token %}
+				  <div class="row">
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
+					  </div>
 					</div>
-        </div>
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
+					  </div>
+					</div>
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label for="phone">Phone</label>
+						<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+					  </div>
+					</div>
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label for="date">Date</label>
+						<input type="date" class="form-control" name="date" [(ngModel)]="form.date">  <!-- Use the form.date field -->
+					  </div>
+					</div>
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label for="time">Time</label>
+						<input type="time" class="form-control" name="time" [(ngModel)]="form.time">  <!-- Use the form.time field -->
+					  </div>
+					</div>
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label for="num_people">Person</label>
+						<div class="select-wrap one-third">
+						  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+						  <input type="text" class="form-control" name="num_people" [(ngModel)]="form.num_people">
+						</div>
+					  </div>
+					</div>
+					<div class="col-md-12">
+					  <div class="form-group">
+						<label for="specific_requirements">Specific Requirements</label>
+						<textarea class="form-control" id="specific_requirements" name="specific_requirements" rows="3" placeholder="Please enter any specific requirements"></textarea>
+					  </div>
+					</div>
+				  </div>
+				  <div class="col-md-12 mt-3">
+					<div class="form-group">
+					  <input type="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
+					</div>
+				  </div>
+				</form>
+			  </div>
 			</div>
-		</section>
+			<div class="col-md-6 d-flex align-items-stretch pb-5 pb-md-0">
+			  <div id="map"></div>
+			</div>
+		  </div>
+		</div>
+	  </section>
 		
 		{% endblock %}
