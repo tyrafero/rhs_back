@@ -1,7 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Reservation
 from datetime import datetime
 from django.contrib import messages  # Import messages framework
+from django.urls import reverse
+from .models import MenuItem
+from django import forms
+
 
 
 def index(request):
@@ -38,6 +42,40 @@ def menu(request):
     
     return render(request, 'menu.html', {'menu_data': menu_data})
 
+class MenuItemForm(forms.ModelForm):
+    class Meta:
+        model = MenuItem
+        fields = '__all__'  # Include all fields from the model
+
+def manage_menu(request, menu_item_id=None):
+    """
+    Handles both adding and editing menu items.
+    """
+    if menu_item_id:  # Editing an existing item
+        menu_item = get_object_or_404(MenuItem, pk=menu_item_id)
+        if request.method == 'POST':
+            form = MenuItemForm(request.POST, request.FILES, instance=menu_item)
+            if form.is_valid():
+                form.save()
+                return redirect(reverse('manage_menu'))  # Redirect to the manage page
+        else:
+            form = MenuItemForm(instance=menu_item)
+    else:  # Adding a new item
+        if request.method == 'POST':
+            form = MenuItemForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect(reverse('manage_menu'))  # Redirect to the manage page
+        else:
+            form = MenuItemForm()
+    
+    menu_items = MenuItem.objects.all()
+    return render(request, 'add_menu.html', {'form': form, 'menu_items': menu_items})
+
+def menu_list(request):
+    menu_items = MenuItem.objects.all()
+    return render(request, 'menu_list.html', {'menu_items': menu_items})
+
 def blog(request):
     return render(request, 'blog.html')
 
@@ -45,7 +83,6 @@ def blog_single(request):
     return render(request, 'blog-single.html')
 
 
-from django import forms
 
 from django.core.mail import send_mail
 from django.conf import settings

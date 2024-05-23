@@ -143,9 +143,9 @@ DATE_FORMAT = "d-m-Y"
 USE_L10N = False
 
 # Email Configuration (For Outlook)
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'  # Replace with your Outlook server address
-EMAIL_PORT = 587  # Replace with the correct port number
-EMAIL_HOST_USER = 'sales@redhotspice.com.au'  # Replace with your Outlook email address
-EMAIL_HOST_PASSWORD = '*redhotspice123'  # Replace with your Outlook email password
-EMAIL_USE_TLS = True  # Use TLS encryption
+EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
+EMAIL_HOST = os.environ.get('EMAIL_HOST') # Replace with your Outlook server address
+EMAIL_PORT = os.environ.get('EMAIL_PORT') # Replace with the correct port number
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER') # Replace with your Outlook email address
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') # Replace with your Outlook email password
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')

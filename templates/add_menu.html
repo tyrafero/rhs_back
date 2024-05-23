@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Menu Items</title>
+</head>
+<body>
+    <h1>Manage Menu Items</h1>
+
+    <h2>Add New Item</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Item</button>
+    </form>
+
+    <h2>Existing Menu Items</h2>
+    <ul>
+        {% for item in menu_items %}
+            <li>
+                <a href="{% url 'manage_menu' item.id %}">{{ item.name }}</a>
+                - {{ item.category }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
