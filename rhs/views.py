@@ -3,7 +3,7 @@ from .models import Reservation
 from datetime import datetime
 from django.contrib import messages  # Import messages framework
 from django.urls import reverse
-from .models import MenuItem
+from .models import MenuItem, Post
 from django import forms
 
 
@@ -117,20 +117,29 @@ def reservation(request):
             reservation = form.save()  # Save the reservation object and get the Reservation object
 
             # Send email confirmation
-            # subject = 'Your Reservation Confirmation'
-            # message = f'Thank you for your reservation! Your reservation details are:\n\n' \
-            #           f'Date: {reservation.date}\n'\
-            #           f'Time: {reservation.time}\n'\
-            #           f'Name: {reservation.name}\n'\
-            #           f'Email: {reservation.email}\n'\
-            #           f'Phone: {reservation.phone}\n'\
-            #           f'Number of People: {reservation.num_people}'
-            # from_email = settings.EMAIL_HOST_USER
-            # recipient_list = [reservation.email]
-            # send_mail(subject, message, from_email, recipient_list)
+            subject = 'Your Reservation Confirmation'
+            message = f'Thank you for your reservation! Your reservation details are:\n\n' \
+                      f'Date: {reservation.date}\n'\
+                      f'Time: {reservation.time}\n'\
+                      f'Name: {reservation.name}\n'\
+                      f'Email: {reservation.email}\n'\
+                      f'Phone: {reservation.phone}\n'\
+                      f'Number of People: {reservation.num_people}'
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [reservation.email]
+            send_mail(subject, message, from_email, recipient_list)
 
-            # messages.success(request, 'Your reservation has been successfully booked!')
-            # print('Your reservation has been successfully booked!')
+            messages.success(request, 'Your reservation has been successfully booked!')
+            print('Your reservation has been successfully booked!')
     else:
         form = ReservationForm()
     return render(request, 'reservation.html', {'form': form})
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    context = {
+        'post': post,
+        'author': post.author,
+        'tags': post.tags.all()
+    }
+    return render(request, 'blog/post_detail.html', context)

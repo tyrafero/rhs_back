@@ -80,10 +80,21 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rhs_mysql',
+        'USER': 'myprojectuser',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -143,7 +154,6 @@ DATE_FORMAT = "d-m-Y"
 USE_L10N = False
 
 # Email Configuration (For Outlook)
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
 EMAIL_HOST = os.environ.get('EMAIL_HOST') # Replace with your Outlook server address
 EMAIL_PORT = os.environ.get('EMAIL_PORT') # Replace with the correct port number
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER') # Replace with your Outlook email address
