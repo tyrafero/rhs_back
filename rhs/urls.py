@@ -13,11 +13,10 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('menu/', menu, name='menu'),
     path('blog/', blog, name='blog'),
-    path('blog-single/', blog_single, name='blog-single'),
     path('reservation/', reservation, name='reservation'),
     path('manage_menu', manage_menu, name='manage_menu'),  # No need for separate add/edit paths
     path('edit/<int:menu_item_id>/', manage_menu, name='manage_menu'),
-    path('posts/<slug:slug>/', post_detail, name='post_detail'),
+    path('blog/<int:pk>/', post_detail, name='blog-single'),
     # path('', menu_list, name='menu_list'),  # Add this for the main list
 
 ]

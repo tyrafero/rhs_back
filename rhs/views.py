@@ -135,11 +135,18 @@ def reservation(request):
         form = ReservationForm()
     return render(request, 'reservation.html', {'form': form})
 
-def post_detail(request, slug):
-    post = get_object_or_404(Post, slug=slug)
+def blog(request):
+    posts = Post.objects.all()
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'blog.html', context)
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
     context = {
         'post': post,
         'author': post.author,
         'tags': post.tags.all()
     }
-    return render(request, 'blog/post_detail.html', context)
+    return render(request, 'blog-single.html', context)

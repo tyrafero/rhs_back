@@ -55,7 +55,7 @@ class Reservation(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(upload_to='post_images', null=True, blank=True)
+    image = models.ImageField(upload_to='post_images', null=False, blank=False)
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     created_at = models.DateTimeField(auto_now_add=True)
