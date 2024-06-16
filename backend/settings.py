@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = ['redhotspice.com.au', 'www.redhotspice.com.au','127.0.0.1:8000/']
 
 # Application definition
 
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
+# development
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -97,7 +97,17 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-
+# deployment
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'rhs_db',
+#         'USER': 'rhs_user',
+#         'PASSWORD': 'rhs_password',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

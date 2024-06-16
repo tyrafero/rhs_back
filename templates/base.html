@@ -78,7 +78,15 @@
             <a href="{% url 'contact' %}" class="nav-link">Contact</a>
           </li>
           <li class="nav-item cta {% if request.path == '/reservation/' %}active{% endif %}">
-            <a href="{% url 'reservation' %}" class="nav-link">Book a table</a>
+            <span style="font-size: 14px;
+            padding-top: .8rem;
+            padding-bottom: .8rem;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-weight: 400; 
+            background: #CC5500;
+            opacity: 1 !important;" class="glf-button reservation" data-glf-cuid="686dfaab-87f8-4baa-99cd-9cbed551a8a7" data-glf-ruid="2e5e8009-ef5b-4316-b011-0ea536929e5a" data-glf-reservation="true">Table Reservation</span>
+          </li>
           </li>
         </ul>
       </div>
@@ -103,7 +111,7 @@
             <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
               <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="https://www.facebook.com/profile.php?id=61560612118005"><span class="icon-facebook"></span></a></li>
               <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
             </ul>
           </div>
@@ -112,10 +120,10 @@
           <div class="ftco-footer-widget mb-4">
             <h2 class="ftco-heading-2">Open Hours</h2>
             <ul class="list-unstyled open-hours">
-              <li class="d-flex"><span>Monday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Tuesday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Wednesday</span><span>9:00 - 24:00</span></li>
-              <li class="d-flex"><span>Thursday</span><span>9:00 - 24:00</span></li>
+              <li class="d-flex"><span>Monday</span><span>17:00 - 21:30</span></li>
+              <li class="d-flex"><span>Tuesday</span><span>17:00 - 21:30</span></li>
+              <li class="d-flex"><span>Wednesday</span><span>17:00 - 21:30</span></li>
+              <li class="d-flex"><span>Thursday</span><span>17:00 - 21:30</span></li>
               <li class="d-flex"><span>Friday</span><span>9:00 - 02:00</span></li>
               <li class="d-flex"><span>Saturday</span><span>9:00 - 02:00</span></li>
               <li class="d-flex"><span>Sunday</span><span> 9:00 - 02:00</span></li>
@@ -188,6 +196,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="../static/js/google-map.js"></script>
     <script src="../static/js/main.js"></script>
     <script src="../static/js/headerfootermanager.js"></script>
+    <script src="https://www.fbgcdn.com/embedder/js/ewm2.js" defer async ></script>
       
     </body>
   </html>

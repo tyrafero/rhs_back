@@ -90,7 +90,7 @@
 	          <p>Craving an extraordinary dining experience? Look no further than Red Hot Chilli, where the tantalizing blend of Himalayan spices, Asian fusion, and English culinary excellence awaits. Picture yourself savoring each mouthwatering bite, as the aromatic flavors transport you to a world of pure culinary bliss. Our welcoming ambiance sets the stage for an unforgettable encounter with delectable dishes that will leave you longing for more. Don't resist the temptation—book your table now and let your taste buds revel in the flavors that await you at Red Hot Chill. Your extraordinary culinary journey begins here!</p>
 						<pc class="time">
 							<span>Mon - Fri <strong>8 AM - 11 PM</strong></span>
-							<span><a href="tel:0424857792"> 0424 857 792</a></span>
+							<span><a href="tel: 0424857792"> 0424 857 792</a></span>
 						</p>
 					</div>
 				</div>
@@ -138,7 +138,7 @@
 	          </div>
           </div>
           <div class="col-md-3 text-center text-md-left">
-          	<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+          	<h3 class="mb-2 bread">We are the best in Melbourne.</h3>
           </div>
         </div>
     	</div>
@@ -233,7 +233,7 @@
 	          	<span class="subheading">Book a table</span>
 	            <h2 class="mb-4">Make Reservation</h2>
 	          </div>
-            <form action="{% url 'reservation' %}" method="post">
+            <!--<form action="{% url 'reservation' %}" method="post">
               {% csrf_token %}
               <div class="row">
               <div class="col-md-6">
@@ -257,13 +257,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                 <label for="date">Date</label>
-                <input type="date" class="form-control" name="date" [(ngModel)]="form.date">  <!-- Use the form.date field -->
+                <input type="date" class="form-control" name="date" [(ngModel)]="form.date">  
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                 <label for="time">Time</label>
-                <input type="time" class="form-control" name="time" [(ngModel)]="form.time">  <!-- Use the form.time field -->
+                <input type="time" class="form-control" name="time" [(ngModel)]="form.time">  
                 </div>
               </div>
               <div class="col-md-6">
@@ -287,8 +287,10 @@
                 <input type="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
               </div>
               </div>
-            </form>
-          </div>
+            </form> -->
+            <div align="center"><span class="glf-button reservation" data-glf-cuid="686dfaab-87f8-4baa-99cd-9cbed551a8a7" data-glf-ruid="2e5e8009-ef5b-4316-b011-0ea536929e5a" data-glf-reservation="true" >Table Reservation</span>
+            </div>
+            </div>
         </div>
 			</div>
 		</section>
@@ -389,7 +391,37 @@
             <h2 class="mb-4">Recent Posts</h2>
           </div>
         </div>
-				<div class="row">
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+            <div class="blog-entry">
+              {% if post.image %}
+              <a href="{% url 'blog-single' post.pk %}" class="block-20" style="background-image: url('{{ post.image.url }}');">
+              </a>
+              {% else %}
+              <a href="{% url 'blog-single' post.pk %}" class="block-20" style="background-image: url('../static/images/image_1.jpg');">
+              </a>
+              {% endif %}
+              <div class="text pt-3 pb-4 px-4">
+                <div class="meta">
+                  {% if post.pub_date %}
+                  <div><a href="#">{{ post.pub_date|date:"M. d, Y" }}</a></div>
+                  {% else %}
+                  <div><a href="#">Sept. 06, 2019</a></div>
+                  {% endif %}
+                  <div><a href="#">{{ post.author.name }}</a></div>
+                </div>
+                <h3 class="heading"><a href="{% url 'blog-single' post.pk %}">{{ post.title }}</a></h3>
+                <p class="clearfix">
+                  <a href="{% url 'blog-single' post.pk %}" class="float-left read">Read more</a>
+                  <a href="#" class="float-right meta-chat"><span class="icon-chat"></span> 3</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+				<!-- <div class="row">
           <div class="col-md-4 ftco-animate">
             <div class="blog-entry">
               <a href="blog-single.html" class="block-20" style="background-image: url('../static/images/image_1.jpg');">
@@ -441,7 +473,8 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
+
 			</div>
 		</section>
 	

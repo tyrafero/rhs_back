@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FeaturedMenu, MenuItem, Reservation, Post, Author, Tag
+from .models import FeaturedMenu, MenuItem, Reservation, Post, Author, Tag, Contact
 # Register your models here.
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone', 'date', 'time', 'num_people')
@@ -10,3 +10,4 @@ admin.site.register(Reservation, ReservationAdmin)
 admin.site.register(Post)
 admin.site.register(Author)
 admin.site.register(Tag)
+admin.site.register(Contact)

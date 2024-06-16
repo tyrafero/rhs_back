@@ -10,7 +10,8 @@ from django import forms
 
 def index(request):
   menu_items = MenuItem.objects.filter(is_special=True)
-  context = {'menu_items': menu_items}
+  posts = Post.objects.all()
+  context = {'menu_items': menu_items,'posts': posts}
   return render(request, 'index.html', context)
 
 from .models import MenuItem
@@ -32,7 +33,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 def menu(request):
-    categories = ["Breakfast", "Lunch", "Dinner","Drinks", "Dessert", "Wine"]
+    categories = ["Entries", "Lunch", "Dinner","Drinks", "Dessert", "FeedMe"]
     menu_data = []
     
     for category in categories:
@@ -150,3 +151,26 @@ def post_detail(request, pk):
         'tags': post.tags.all()
     }
     return render(request, 'blog-single.html', context)
+
+from django.shortcuts import render, redirect
+from .models import Contact
+from django.contrib import messages
+
+def contact_view(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        subject = request.POST['subject']
+        message = request.POST['message']
+
+        contact = Contact.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+        contact.save()
+        messages.success(request, 'Your message has been sent successfully.')
+        return redirect('contact')
+
+    return render(request, 'contact.html')

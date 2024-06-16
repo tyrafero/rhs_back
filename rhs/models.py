@@ -9,20 +9,20 @@ class FeaturedMenu(models.Model):
 from django.db import models
 
 class MenuItem(models.Model):
-    BREAKFAST = 'Breakfast'
+    Entries = 'Entries'
     LUNCH = 'Lunch'
     DINNER = 'Dinner'
     DRINKS = 'Drinks'
     DESSERT = 'Dessert'
-    WINE = 'Wine'
+    FeedMe = 'FeedMe'
 
     CATEGORY_CHOICES = [
-        (BREAKFAST, 'Breakfast'),
+        (Entries, 'Entries'),
         (LUNCH, 'Lunch'),
         (DINNER, 'Dinner'),
         (DRINKS, 'Drinks'),
         (DESSERT, 'Dessert'),
-        (WINE, 'Wine'),
+        (FeedMe, 'FeedMe'),
     ]
 
     name = models.CharField(max_length=100)
@@ -55,7 +55,7 @@ class Reservation(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(upload_to='post_images', null=False, blank=False)
+    image = models.ImageField(upload_to='post_images', null=True, blank=True)
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
     tags = models.ManyToManyField('Tag')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -74,3 +74,12 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
     def __str__(self):
         return self.name
+
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
